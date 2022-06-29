@@ -14,14 +14,78 @@ linkedin: ihormiroshnychenko
 date: "`r format(Sys.time(), '%m %Y')`"
 output: 
   vitae::awesomecv:
+    keep_tex: false
     page_total: false
     latex_engine: "xelatex"
+always_allow_html: yes
+header-includes:
+  \usepackage{float}
+  \usepackage{multicol}
+  \usepackage{colortbl}
+  \arrayrulecolor{white}
+  \usepackage{hhline}
+  \definecolor{light-gray}{gray}{0.95}
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
 library(vitae)
+library(ggplot2)
+library(dplyr)
+library(ggrepel)
+library(fontawesome)
+library(kableExtra)
+library(gridExtra)
 ```
+
+\faIcon{briefcase} Professional Experience
+============================================
+
+\faIcon{chalkboard} Teaching Experience
+============================================
+
+\faIcon{university} Education
+==================================
+
+\faIcon*{file} Selected Publications
+===========================
+
+\faIcon{lightbulb} Projects
+=====================================
+
+\faIcon{satellite} Research projects
+============================================
+
+\faIcon{laptop-code} Programming projects
+============================================
+
+\faIcon{comments} Presentations, blogs, courses
+============================================
+
+\faIcon{medal} Awards & Distinctions
+============================================
+
+\faIcon{hand-holding-heart} Volunteer work
+============================================
+
+\faIcon{users} Memberships
+============================================
+
+\faIcon{brain} Skills
+============================================
+
+\faIcon{cogs} Technical skills
+---------------------------------
+
+\faIcon{calendar} Organizational skills
+---------------------------------
+
+\faIcon{language} Languages
+============================================
+
+\faIcon{comment} References
+============================================
+
 
 # Відомості про мене
 
