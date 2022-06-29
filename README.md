@@ -1,2 +1,2 @@
-# CV
-Ihor Miroshnychenko Curriculum Vitae
+# Ihor Miroshnychenko Curriculum Vitae
+
