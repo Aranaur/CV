@@ -6,6 +6,9 @@ address: "Київський національний економічний у�
 phone: +38 097 639 18 06
 www: aranaur.rbind.io
 email: "ihor.miroshnychenko@kneu.ua"
+profilepic: miv.png
+headcolor: 414141
+orcid: 0000-0002-1307-7889
 github: aranaur
 linkedin: ihormiroshnychenko
 date: "`r format(Sys.time(), '%m %Y')`"
