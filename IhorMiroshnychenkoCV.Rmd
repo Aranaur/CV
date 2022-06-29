@@ -1,0 +1,52 @@
+---
+name: Ігор
+surname: Мірошниченко
+position: "Доцент кафедри математичного моделювання та статистики"
+address: "Київський національний економічний університет імені Вадима Гетьмана"
+phone: +38 097 639 18 06
+www: aranaur.rbind.io
+email: "ihor.miroshnychenko@kneu.ua"
+github: aranaur
+linkedin: ihormiroshnychenko
+date: "`r format(Sys.time(), '%B %Y')`"
+output: 
+  vitae::awesomecv:
+    page_total: true
+    latex_engine: "xelatex"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
+library(vitae)
+```
+
+# Відомості про мене
+
+ * Один
+ * Два
+ * Три
+
+# Освіта
+
+```{r}
+library(tibble)
+tribble(
+  ~ Degree, ~ Year, ~ Institution, ~ Where,
+  "КНЕУ", "2004-08", "Бакалавр економічної кібернетики", "Київ, Україна",
+  "КНЕУ", "2008-09", "Магістр економічниї кібернетики", "Київ, Україна",
+  "КНЕУ", "2016", "Кандидат економічних наук", "Київ, Україна",
+  "КНЕУ", "2022", "Доцент", "Київ, Україна",
+) %>% 
+  detailed_entries(Degree, Year, Institution, Where)
+```
+
+# Publications
+
+```{r}
+library(dplyr)
+knitr::write_bib(c("vitae", "tibble"), "packages.bib")
+
+bibliography_entries("packages.bib") %>%
+  arrange(desc(author$family), issued)
+```
+
