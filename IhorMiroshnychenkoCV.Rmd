@@ -72,7 +72,7 @@ tribble(
   "Київський національний економічний університет імені Вадима Гетьмана", "2004-08", "Бакалавр економічної кібернетики", "Київ, Україна",
   "Київський національний економічний університет імені Вадима Гетьмана", "2008-09", "Магістр економічниї кібернетики", "Київ, Україна",
   "Київський національний економічний університет імені Вадима Гетьмана", "2016", "Кандидат економічних наук", "Київ, Україна",
-  "Київський національний економічний університет імені Вадима Гетьмана", "2022", "Доцент", "Київ, Україна",
+  "Київський національний економічний університет імені Вадима Гетьмана", "2022", "Доцент (очікую документи)", "Київ, Україна",
 ) %>% 
   detailed_entries(Degree, Year, Institution, Where)
 ```
@@ -158,38 +158,82 @@ tribble(
   brief_entries(glue::glue("\\textbf{<code>}: <title> (МІБ / <campus>)", .open = "<", .close = ">"), semester, .protect = FALSE)
 ```
 
-\faIcon{lightbulb} Projects
-=====================================
+<!-- \faIcon{lightbulb} Projects -->
+<!-- ===================================== -->
 
-\faIcon{satellite} Research projects
+<!-- \faIcon{satellite} Research projects -->
+<!-- ============================================ -->
+
+<!-- \faIcon{laptop-code} Programming projects -->
+<!-- ============================================ -->
+
+<!-- \faIcon{comments} Presentations, blogs, courses -->
+<!-- ============================================ -->
+
+<!-- \faIcon{medal} Awards & Distinctions -->
+<!-- ============================================ -->
+
+<!-- \faIcon{hand-holding-heart} Volunteer work -->
+<!-- ============================================ -->
+
+\faIcon{users} Редакційна колегія
 ============================================
 
-\faIcon{laptop-code} Programming projects
+```{r positions, results='asis'}
+tribble(
+  ~Start, ~End, ~Position,
+  2018, NA, "\\textbf{Відповідальний секретар}, \\textit{Neuro-Fuzzy Modeling Techniques in Economics} (\\textbf{Scopus} з 2021 року)") %>%
+  mutate(End = tidyr::replace_na(as.character(End), "")) %>%
+  mutate(Year = paste(Start, "--", End, sep = "")) %>%
+  select(Year, Position) %>%
+  baretable()
+```
+
+
+\faIcon{brain} НАВИЧКИ
 ============================================
 
-\faIcon{comments} Presentations, blogs, courses
-============================================
-
-\faIcon{medal} Awards & Distinctions
-============================================
-
-\faIcon{hand-holding-heart} Volunteer work
-============================================
-
-\faIcon{users} Memberships
-============================================
-
-\faIcon{brain} Skills
-============================================
-
-\faIcon{cogs} Technical skills
+\faIcon{cogs} Технічні навички
 ---------------------------------
 
-\faIcon{calendar} Organizational skills
----------------------------------
+```{r techtable, results='markup'}
+tribble(
+   ~Програмування, ~Software, ~`Data Science`, ~Інше,
+  "\\textbf{R -- Python}",
+  "RStudio -- Jupyter Notebook -- DataSpell -- PyCharm -- Excel",
+  "Tidyverse -- Pandas -- Numpy",
+  "Git -- Markdown -- LaTex -- RMarkdown") %>% 
+  kable(booktabs = T, align = 'c', escape = F, format = "latex") %>% 
+  kable_styling(full_width = F, font_size = 12, latex_options = "HOLD_position") %>% 
+  row_spec(0, bold = T, color = "#009acd") %>% 
+  column_spec(column = 1:4, width = '4cm')
+```
 
-\faIcon{language} Languages
+<!-- \faIcon{calendar} Organizational skills -->
+<!-- --------------------------------- -->
+
+
+
+\faIcon{language} Мови
 ============================================
+
+```{r langforeign, results='markup'}
+data.frame(
+  Мови = c("Українська", "Російська", "Англійська"),
+  `Рівень знань` = cell_spec(c("Рідна","Вільно","B2"), 'latex', color = '#005c7b')) %>% 
+  kable(booktabs = T, align = 'l', escape = F, format = "latex") %>% 
+  kable_styling(full_width = F, font_size = 12, latex_options = "HOLD_position", position = "center") %>% 
+  row_spec(0, bold = T, color = "#009acd") %>% 
+  # footnote(
+  #   footnote_as_chunk = T,
+  #   general_title = " ",
+  #   general = "\\\\tiny Common European Framework of Reference for Languages: A1/A2: Basic User. B1/B2: Independent User. C1/C2: Proficient User",
+  #   escape = F
+  # ) %>% 
+  column_spec(column = 1:2, width = '4cm') #|> 
+  # add_header_above(' ', line = F) |>
+  # row_spec(0:4, extra_latex_after = "\\arrayrulecolor{white}") 
+```
 
 \faIcon{comment} ПУБЛІКАЦІЇ
 ============================================
@@ -198,6 +242,6 @@ tribble(
 library(dplyr)
 
 bibliography_entries("packages.bib") %>%
-  arrange(desc(author$family), issued)
+  arrange(desc(issued))
 ```
 
