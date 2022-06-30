@@ -1,6 +1,6 @@
 ---
 name: Ігор
-surname: Мірошниченко
+surname:  Мірошниченко
 position: "Доцент кафедри математичного моделювання та статистики"
 address: "Київський національний економічний університет імені Вадима Гетьмана"
 phone: +38 097 639 18 06
@@ -36,19 +36,113 @@ library(ggrepel)
 library(fontawesome)
 library(kableExtra)
 library(gridExtra)
+library(xtable)
+
+baretable <- function(tbl, digits = 0,
+                      include.colnames = FALSE, include.rownames = FALSE,
+                      hline.after = NULL,
+                      size = getOption("xtable.size", NULL),
+                      add.to.row = getOption("xtable.add.to.row", NULL),
+                      longtable = FALSE,
+                      ...) {
+  xtable::xtable(tbl, digits = digits, ...) %>%
+    print(
+      include.colnames = include.colnames,
+      include.rownames = include.rownames,
+      hline.after = hline.after,
+      comment = FALSE,
+      tabular.environment = if_else(longtable, "longtable", "tabular"),
+      floating = FALSE,
+      size = size,
+      add.to.row = add.to.row,
+      sanitize.text.function = function(x) {
+        x
+      }
+    )
+}
 ```
 
-\faIcon{briefcase} Professional Experience
-============================================
-
-\faIcon{chalkboard} Teaching Experience
-============================================
-
-\faIcon{university} Education
+\faIcon{university} ОСВІТА
 ==================================
 
-\faIcon*{file} Selected Publications
-===========================
+```{r}
+library(tibble)
+tribble(
+  ~ Degree, ~ Year, ~ Institution, ~ Where,
+  "Київський національний економічний університет імені Вадима Гетьмана", "2004-08", "Бакалавр економічної кібернетики", "Київ, Україна",
+  "Київський національний економічний університет імені Вадима Гетьмана", "2008-09", "Магістр економічниї кібернетики", "Київ, Україна",
+  "Київський національний економічний університет імені Вадима Гетьмана", "2016", "Кандидат економічних наук", "Київ, Україна",
+  "Київський національний економічний університет імені Вадима Гетьмана", "2022", "Доцент", "Київ, Україна",
+) %>% 
+  detailed_entries(Degree, Year, Institution, Where)
+```
+
+\faIcon{briefcase} ДОСВІД РОБОТИ
+============================================
+
+```{r employment, results='asis'}
+tribble(
+  ~Start, ~End, ~Position,
+  2009, 2015, "\\textbf{Асистент}, кафедри економіко-математичного моделювання, ФІСіТ, КНЕУ",
+  2015, 2018, "\\textbf{Старший викладач}, кафедри економіко-математичного моделювання, ФІСіТ, КНЕУ",
+  2018, 2021, "\\textbf{Доцент}, кафедри економіко-математичного моделювання, ІІТЕ, КНЕУ",
+  2019, NA, "\\textbf{Лектор}, MBA, International Institute of Business (IIB)",
+  2021, NA, "\\textbf{Доцент}, кафедри математичного моделювання та статистики, ІІТЕ, КНЕУ"
+) %>%
+  arrange(-Start) %>%
+  mutate(End = tidyr::replace_na(as.character(End), "")) %>%
+  mutate(Years = paste(Start, "--", End, sep = "")) %>%
+  select(Years, Position) %>%
+  baretable()
+```
+
+\faIcon{chalkboard} ДОСВІД ВИКЛАДАННЯ
+============================================
+
+## Університет
+
+```{r tutoring}
+tribble(
+  ~ title, ~ code, ~ campus, ~ semester, ~ purple,
+  "Machine Learning", "8і01", "ІІТЕ", "2021-", NA,
+  "Data Science", "6і05", "ІІТЕ", "2021-", TRUE,
+  "Прогнозування часових рядів", "6і01", "ІІТЕ", "2018-", TRUE,
+  "Економетрика", "6і01", "ІІТЕ", "2016-", TRUE,
+  "Фінансова математика", "6і01", "ІІТЕ", "2016-", TRUE,
+  "Імітаційне моделювання", "6і01", "ІІТЕ", "2016-", TRUE,
+  "Прогнозування часових рядів", "6М05", "МЕМ", "2021-", TRUE,
+  "Ризик-менеджмент в фінансовій сфері", "6і01", "ІІТЕ", "2019-", NA,
+  "Кількісні методи в економіці", "8і01", "ІІТЕ", "2020-2021", TRUE,
+  "Прикладні моделі економічних процесів", "8і01", "ІІТЕ", "2020-2021", NA,
+  "Моделювання економіки", "6і01", "ІІТЕ", "2018-2020", NA,
+  "Математичне програмування", "6і01", "ІІТЕ", "2011-2015", NA,
+  "Економіко-математичне моделювання", "6і01", "ІІТЕ", "2011-2015", NA,
+  "Економіко-математичні методи та моделі", "6507", "ФМ", "2009-2012", NA,
+  "Економіко-математичні методи та моделі", "6ф03", "ФФ", "2009-2012", NA
+) %>% 
+  brief_entries(glue::glue("\\textbf{<code>}: <title> (КНЕУ <campus>)", .open = "<", .close = ">"), semester, .protect = FALSE)
+```
+
+\newpage
+
+## Master of Business Administration
+
+```{r mba}
+tribble(
+  ~ title, ~ code, ~ campus, ~ semester, ~ purple,
+  "Бизнес-математика для руководителя", "GMBA-06", "IIB", "2019", NA,
+  "Бизнес-математика для руководителя", "GMBA-08", "IIB", "2020", NA,
+  "Бизнес-математика для руководителя", "GMBA-10", "IIB", "2020", NA,
+  "Бизнес-математика для руководителя", "GMBA-09", "IIB", "2021", NA,
+  "Бизнес-математика для руководителя", "GMBA-11", "IIB", "2020", NA,
+  "Бізнес-аналітика", "GMBA-12", "IIB", "2021", NA,
+  "Бізнес-аналітика", "GMBA-14", "IIB", "2021", NA,
+  "Ризик-менеджмент", "GMBA-12", "IIB", "2022", NA,
+  "Ризик-менеджмент", "GMBA-14", "IIB", "2022", NA
+) %>% 
+  arrange(-as.numeric(semester)) %>% 
+  brief_entries(glue::glue("\\textbf{<code>}: <title> (МІБ / <campus>)", .open = "<", .close = ">"), semester, .protect = FALSE)
+```
 
 \faIcon{lightbulb} Projects
 =====================================
@@ -83,35 +177,11 @@ library(gridExtra)
 \faIcon{language} Languages
 ============================================
 
-\faIcon{comment} References
+\faIcon{comment} ПУБЛІКАЦІЇ
 ============================================
-
-
-# Відомості про мене
-
- * Один
- * Два
- * Три
-
-# Освіта
-
-```{r}
-library(tibble)
-tribble(
-  ~ Degree, ~ Year, ~ Institution, ~ Where,
-  "КНЕУ", "2004-08", "Бакалавр економічної кібернетики", "Київ, Україна",
-  "КНЕУ", "2008-09", "Магістр економічниї кібернетики", "Київ, Україна",
-  "КНЕУ", "2016", "Кандидат економічних наук", "Київ, Україна",
-  "КНЕУ", "2022", "Доцент", "Київ, Україна",
-) %>% 
-  detailed_entries(Degree, Year, Institution, Where)
-```
-
-# Публікації
 
 ```{r}
 library(dplyr)
-knitr::write_bib(c("vitae", "tibble"), "packages.bib")
 
 bibliography_entries("packages.bib") %>%
   arrange(desc(author$family), issued)
