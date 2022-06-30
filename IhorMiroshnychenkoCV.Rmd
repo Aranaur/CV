@@ -99,7 +99,7 @@ tribble(
 \faIcon{chalkboard} ДОСВІД ВИКЛАДАННЯ
 ============================================
 
-## Університет
+## Київський національний економічний університет імені Вадима Гетьмана
 
 ```{r tutoring}
 tribble(
@@ -121,6 +121,20 @@ tribble(
   "Економіко-математичні методи та моделі", "6ф03", "ФФ", "2009-2012", NA
 ) %>% 
   brief_entries(glue::glue("\\textbf{<code>}: <title> (КНЕУ <campus>)", .open = "<", .close = ">"), semester, .protect = FALSE)
+```
+
+## Курси підвищення кваліфікації (КНЕУ)
+
+```{r course}
+tribble(
+  ~ title, ~ code, ~ campus, ~ semester, ~ purple,
+  "Вступ у Data Science", "КНЕУ", "№1", "2020", NA,
+  "Вступ у Data Science", "КНЕУ", "№2", "2021", NA,
+  "Вступ у Data Science", "КНЕУ", "№3", "2021", NA,
+  "Вступ у Data Science", "КНЕУ", "№4", "2022", NA
+) %>% 
+  arrange(-as.numeric(semester)) %>% 
+  brief_entries(glue::glue("\\textbf{<code>}: <title> (КНЕУ / <campus>)", .open = "<", .close = ">"), semester, .protect = FALSE)
 ```
 
 \newpage
