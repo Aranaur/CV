@@ -1,0 +1,76 @@
+references:
+- URL: ''
+  author:
+  - family: Miroshnychenko
+    given: Ihor
+  - family: Kravchenko
+    given: Tetyana
+  - family: Drobyna
+    given: Yulia
+  container-title: Neuro-Fuzzy Modeling Techniques in Economics
+  id: MKD21
+  issue: '10'
+  issued:
+    date-parts:
+    - - 2021
+  page: 160-192
+  title: Forecasting the main indicators of the market of alternative sources of electricity
+    in developing countries (on the example of ukraine)
+  type: article-journal
+  volume: ''
+- URL: ''
+  author:
+  - family: Chuzhykov
+    given: Victor
+  - family: Lukianenko
+    given: Olha
+  - family: Miroshnychenko
+    given: Ihor
+  container-title: Neuro-Fuzzy Modeling Techniques in Economics
+  id: CLM20
+  issue: '9'
+  issued:
+    date-parts:
+    - - 2020
+  page: 45-68
+  title: Forecasting of fish and seafood catch in the global economy
+  type: article-journal
+  volume: ''
+- URL: ''
+  author:
+  - family: Matviychuk
+    given: Andry
+  - family: Lukianenko
+    given: Olha
+  - family: Miroshnychenko
+    given: Ihor
+  container-title: Fuzzy Economic Review
+  id: MLM19
+  issue: '2'
+  issued:
+    date-parts:
+    - - 2019
+  page: 65-68
+  title: Neuro-fuzzy model of country’s investment potential assessment
+  type: article-journal
+  volume: '24'
+- URL: ''
+  author:
+  - family: Kaminskyi
+    given: Andry
+  - family: Miroshnychenko
+    given: Ihor
+  - family: Pysanets
+    given: Konstantine
+  container-title: Neuro-Fuzzy Modeling Techniques in Economics
+  id: KMP19
+  issue: '8'
+  issued:
+    date-parts:
+    - - 2019
+  page: 175-193
+  title: 'Risk and return for cryptocurrencies as alternative investment: Kohonen
+    maps clustering'
+  type: article-journal
+  volume: ''
+  title-short: Risk and return for cryptocurrencies as alternative investment
